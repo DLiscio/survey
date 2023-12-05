@@ -1,0 +1,3 @@
+[submodule "SurveySphereApplication"]
+	path = SurveySphereApplication
+	url = https://github.com/LakelandCleckner/SurveySphereApplication.git
