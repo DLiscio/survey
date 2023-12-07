@@ -9,6 +9,7 @@ import SignIn from './components/SignIn';
 import SignOut from './components/SignOut'; // Import SignOut
 import EditProfile from './components/EditProfile';
 import jwtDecode from 'jwt-decode';
+import Surveys from './components/Surveys'; //Import Surveys
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -34,6 +35,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/edit-profile" element={<EditProfile userId={userId} />} />
+          <Route path="/surveys" element={<Surveys />} />
           <Route 
             path="/signin"
             element={<SignIn onSignIn={() => setIsAuthenticated(true)} />}
