@@ -39,9 +39,9 @@ const Navbar = ({ isAuthenticated, handleSignOut }) => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <button className="nav-link" onClick={handleSignOut}>
+                  <Link className="nav-link" to="/signout">
                     Sign Out
-                  </button>
+                  </Link>
                 </li>
               </>
             ) : (
