@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Home = () => {
-  const imageUrl = '/asset/Survey Sphere Logo 2023-11-29 211239.jpg';
+  const imageUrl = '/asset/Survey Sphere Logo.png';
 
   return (
     <div>

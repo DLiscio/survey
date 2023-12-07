@@ -33,6 +33,11 @@ const Navbar = ({ isAuthenticated, handleSignOut }) => {
             </li>
             {isAuthenticated ? (
               <>
+               <li className="nav-item">
+                  <Link className="nav-link" to="/surveys">
+                    Surveys
+                  </Link>
+                </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/profile">
                     Profile
