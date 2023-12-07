@@ -7,9 +7,22 @@ import Profile from './components/Profile';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import SignOut from './components/SignOut'; // Import SignOut
+import EditProfile from './components/EditProfile';
+import jwtDecode from 'jwt-decode';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const getUserInfo = () => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      return decodedToken.userId;
+    }
+    return null;
+  };
+
+  const userId = getUserInfo();
 
   return (
     <div className="App">
@@ -20,6 +33,7 @@ function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/edit-profile" element={<EditProfile userId={userId} />} />
           <Route 
             path="/signin"
             element={<SignIn onSignIn={() => setIsAuthenticated(true)} />}

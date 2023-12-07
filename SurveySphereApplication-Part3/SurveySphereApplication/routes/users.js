@@ -61,7 +61,7 @@ router.get('/:userId', async (req, res, next) => {
   }
 });
 
-router.put('/:userId', async (req, res, next) => {
+router.put('/:userId', authenticateToken, async (req, res, next) => {
   try {
     const userId = req.params.userId;
     const { username, email, password } = req.body;

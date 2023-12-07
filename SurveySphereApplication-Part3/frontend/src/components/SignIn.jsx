@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-
+import jwtDecode from 'jwt-decode';
 
 const SignIn = ({ onSignIn }) => {
   const [formData, setFormData] = useState({
@@ -17,32 +16,33 @@ const SignIn = ({ onSignIn }) => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    const getUser = formData; // Pass formData instead of creating a new object
     const response = await fetch("http://localhost:5000/users/login", {
       method: "POST",
-      body: JSON.stringify(getUser),
+      body: JSON.stringify(formData),
       headers: {
         "Content-Type": "application/json",
       },
     });
-    const result = await response.json();
+
     if (!response.ok) {
-      console.log(result.error);
-    }
-    if (response.ok) {
-      console.log(result);
+      const result = await response.json();
+      console.log(result.error); // Log or handle the error appropriately
+      return;
     }
 
-    const isAuthenticated = true;
+    const { token } = await response.json();
+    localStorage.setItem('authToken', token); // Store the JWT token
+    const decodedToken = jwtDecode(token);
+    const userId = decodedToken.userId; // Decode the token to get userId
+    localStorage.setItem('userId', userId); // Store userId for later use
 
-    onSignIn(isAuthenticated);
+    onSignIn(true);
     navigate('/profile');
   };
 
   return (
     <div className='container my-2'>
       <h2 className='text-center'>Sign In Form</h2>
-
       <form onSubmit={handleSignIn}>
         <div className="mb-3">
           <label className="form-label">Email address</label>
@@ -51,7 +51,7 @@ const SignIn = ({ onSignIn }) => {
             className="form-control"
             value={formData.email}
             onChange={handleChange}
-            name="email" // Specify the name attribute
+            name="email"
           />
         </div>
         <div className="mb-3">
@@ -61,13 +61,10 @@ const SignIn = ({ onSignIn }) => {
             className="form-control"
             value={formData.password}
             onChange={handleChange}
-            name="password" // Specify the name attribute
+            name="password"
           />
         </div>
-
-        <button type="submit" className="btn btn-primary">
-          Sign In
-        </button>
+        <button type="submit" className="btn btn-primary">Sign In</button>
       </form>
     </div>
   );
