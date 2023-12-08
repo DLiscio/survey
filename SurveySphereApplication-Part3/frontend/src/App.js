@@ -6,10 +6,11 @@ import Users from './components/Users';
 import Profile from './components/Profile';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
-import SignOut from './components/SignOut'; // Import SignOut
+import SignOut from './components/Signout'; // Import SignOut
 import EditProfile from './components/EditProfile';
 import jwtDecode from 'jwt-decode';
 import Surveys from './components/Surveys'; //Import Surveys
+import CreateSurvey from './components/CreateSurvey';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -36,6 +37,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/edit-profile" element={<EditProfile userId={userId} />} />
           <Route path="/surveys" element={<Surveys />} />
+          <Route path="/CreateSurvey" element={<CreateSurvey />} />
           <Route 
             path="/signin"
             element={<SignIn onSignIn={() => setIsAuthenticated(true)} />}
