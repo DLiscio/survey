@@ -8,6 +8,7 @@ const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const surveysRoute = require('./routes/surveys');
 
 var app = express();
 const bodyParser = require('body-parser');
@@ -28,6 +29,8 @@ db.once('open', () => {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/surveys', surveysRoute);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

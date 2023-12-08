@@ -6,7 +6,7 @@ import Users from './components/Users';
 import Profile from './components/Profile';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
-import SignOut from './components/Signout'; // Import SignOut
+import SignOut from './components/SignOut'; // Import SignOut
 import EditProfile from './components/EditProfile';
 import jwtDecode from 'jwt-decode';
 import Surveys from './components/Surveys'; //Import Surveys
