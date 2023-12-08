@@ -8,6 +8,23 @@ const SignIn = ({ onSignIn }) => {
     password: '',
   });
 
+  const containerStyle = {
+    textAlign: 'center', 
+  };
+
+  const inputStyle = {
+    width: '300px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: '15px',
+  };
+
+  const labelStyle = {
+    fontSize: '18px',
+    marginTop: '15px',
+  };
+
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -41,12 +58,13 @@ const SignIn = ({ onSignIn }) => {
   };
 
   return (
-    <div className='container my-2'>
+    <div className='container my-2' style={containerStyle}>
       <h2 className='text-center'>Sign In Form</h2>
       <form onSubmit={handleSignIn}>
         <div className="mb-3">
-          <label className="form-label">Email address</label>
+          <label className="form-label" style={labelStyle}>Email address</label>
           <input
+            style={inputStyle}
             type="email"
             className="form-control"
             value={formData.email}
@@ -55,8 +73,9 @@ const SignIn = ({ onSignIn }) => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Password</label>
+          <label className="form-label" style={labelStyle}>Password</label>
           <input
+            style={inputStyle}
             type="password"
             className="form-control"
             value={formData.password}

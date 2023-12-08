@@ -5,6 +5,22 @@ const EditProfile = () => {
   const [updateStatus, setUpdateStatus] = useState('');
   const [error, setError] = useState('');
 
+  const containerStyle = {
+    textAlign: 'center', 
+  };
+
+  const inputStyle = {
+    width: '300px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: '15px',
+  };
+
+  const labelStyle = {
+    fontSize: '18px',
+    marginTop: '15px',
+  };
+
   const handleChange = (e) => {
     setProfileData({ ...profileData, [e.target.name]: e.target.value });
   };
@@ -54,15 +70,16 @@ const EditProfile = () => {
   };
 
   return (
-    <div className='container my-2'>
+    <div className='container my-2' style={containerStyle}>
       <h2 className='text-center'>Edit Profile</h2>
       {error && <div className="alert alert-danger">{error}</div>}
       {updateStatus && <div className="alert alert-success">{updateStatus}</div>}
 
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="form-label">Username</label>
+          <label className="form-label" style={labelStyle}>Username</label>
           <input
+            style={inputStyle}
             type="text"
             className="form-control"
             name="username"
@@ -71,8 +88,9 @@ const EditProfile = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Email</label>
+          <label className="form-label" style={labelStyle}>Email</label>
           <input
+            style={inputStyle}
             type="email"
             className="form-control"
             name="email"
@@ -81,8 +99,9 @@ const EditProfile = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Password</label>
+          <label className="form-label" style={labelStyle}>Password</label>
           <input
+            style={inputStyle}
             type="password"
             className="form-control"
             name="password"
@@ -91,8 +110,9 @@ const EditProfile = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Confirm Password</label>
+          <label className="form-label" style={labelStyle}>Confirm Password</label>
           <input
+            style={inputStyle}
             type="password"
             className="form-control"
             name="confirmPassword"

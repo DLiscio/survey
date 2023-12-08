@@ -11,6 +11,22 @@ const SignUp = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const containerStyle = {
+    textAlign: 'center', 
+  };
+
+  const inputStyle = {
+    width: '300px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: '15px',
+  };
+
+  const labelStyle = {
+    fontSize: '18px',
+    marginTop: '15px',
+  };
+
   // eslint-disable-next-line no-unused-vars
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -53,14 +69,15 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <div style = {containerStyle}>
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="username" className="form-label">
+          <label htmlFor="username" className="form-label" style={labelStyle}>
             Name
           </label>
           <input
+            style={inputStyle} 
             type="text"
             className="form-control"
             id="username"
@@ -71,10 +88,11 @@ const SignUp = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">
+          <label htmlFor="email" className="form-label" style={labelStyle}>
             Email
           </label>
           <input
+            style={inputStyle} 
             type="email"
             className="form-control"
             id="email"
@@ -85,10 +103,11 @@ const SignUp = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="password" className="form-label">
+          <label htmlFor="password" className="form-label" style={labelStyle}>
             Password
           </label>
           <input
+            style={inputStyle} 
             type="password"
             className="form-control"
             id="password"
@@ -103,7 +122,6 @@ const SignUp = () => {
         </button>
       </form>
       {error && <div className="alert alert-danger">{error}</div>}
-      <Link to="/users">Users</Link>
     </div>
   );
 };
