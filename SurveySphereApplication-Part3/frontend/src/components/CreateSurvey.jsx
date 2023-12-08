@@ -68,22 +68,43 @@ const CreateSurvey = () => {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        if (!validateForm()) return;
-
-        setSubmitting(true);
-        try {
-            await axios.post('http://localhost:5000/surveys', { title, description, questions, createdBy });
-            setSuccess(true);
-            setTitle('');
-            setDescription('');
-            setQuestions([{ questionText: '', responseType: 'text', options: [], scale: 5 }]);
-        } catch (error) {
-            setError('Error submitting survey: ' + error.message);
-        } finally {
-            setSubmitting(false);
-        }
-    };
+      event.preventDefault();
+      if (!validateForm()) return;
+  
+      const token = localStorage.getItem('authToken');
+      if (!token) {
+          setError('You are not logged in.');
+          return;
+      }
+  
+      // Retrieve the user ID from local storage
+      const createdBy = localStorage.getItem('userId');
+      if (!createdBy) {
+          setError('User ID not found. Please sign in again.');
+          return;
+      }
+  
+      const config = {
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': token
+          }
+      };
+  
+      setSubmitting(true);
+      try {
+          await axios.post('http://localhost:5000/surveys', { title, description, questions, createdBy }, config);
+          setSuccess(true);
+          setTitle('');
+          setDescription('');
+          setQuestions([{ questionText: '', responseType: 'text', options: [], scale: 5 }]);
+      } catch (error) {
+          setError('Error submitting survey: ' + error.message);
+      } finally {
+          setSubmitting(false);
+      }
+  };
+  
 
     return (
         <div className='container my-2'>

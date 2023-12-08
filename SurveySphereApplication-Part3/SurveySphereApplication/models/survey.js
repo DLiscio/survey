@@ -19,8 +19,7 @@ const surveySchema = new mongoose.Schema({
     description: String,
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+        ref: 'User'
     },
     questions: [questionSchema],
 }, { timestamps: true });
